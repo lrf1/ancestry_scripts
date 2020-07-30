@@ -7,17 +7,15 @@ var waitTimeScroll = 3000;
 // NO CHANGES BELOW THIS LINE!!!
 (async() => {
     var matchesTagged = 0;
-    var matchesSkipped = 0;
     var matchList = document.getElementsByTagName("match-entry");
     mainloop: for (let matchIdx = 0; matchIdx < matchList.length; matchIdx++) {
         let presentGroups = matchList[matchIdx].getElementsByClassName("indicatorGroup");
         for (let groupIdx = 0; groupIdx < presentGroups.length; groupIdx++) {
             let title = presentGroups[groupIdx].title;
             if (groupTitle.localeCompare(title.toString()) == 0) {
-				if (doMatchLogging)
-					console.warn("%c Skipping match list entry #" + (matchIdx+1) + " "
-						+ document.getElementsByTagName("match-entry")[matchIdx].getElementsByClassName("userCardImg")[0].title, "color: #cccccc");
-				matchesSkipped++;
+			if (doMatchLogging)
+				console.warn("%c Skipping match list entry #" + (matchIdx+1) + " "
+					+ document.getElementsByTagName("match-entry")[matchIdx].getElementsByClassName("userCardImg")[0].title, "color: #cccccc");
                 if ((matchIdx+1) == matchList.length) {
 					console.warn("%cScrolling to find untagged matches. Current list length is now " + matchList.length, "background: #ffff00");
 					window.scrollTo(0, window.document.body.scrollHeight);
@@ -41,7 +39,6 @@ var waitTimeScroll = 3000;
             matchesTagged++;
         }
         btn[1].click();
-
     }
     console.warn("Tagging done - a total of " + matchList.length + " matches have been tagged. Last script run tagged " + matchesTagged + " matches.");
 }) ()
