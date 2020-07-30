@@ -17,9 +17,9 @@ var waitTimeScroll = 3000;
                 console.warn("%cSkipping match list entry #" + (matchIdx+1) + " "
                     + document.getElementsByTagName("match-entry")[matchIdx].getElementsByClassName("userCardImg")[0].title, "color: #cccccc");
                 if ((matchIdx+1) == matchList.length) {
+                    console.warn("%cScrolling to find untagged matches. Appended list length will be " + (matchList.length + 50), "background: #ffff00");
                     window.scrollTo(0, window.document.body.scrollHeight);
                     await new Promise(r => setTimeout(r, waitTimeScroll));
-                    console.warn("%cScrolled to find untagged matches. Current list length is now " + matchList.length, "background: #ffff00");
                 }
                 continue mainloop;
             }
