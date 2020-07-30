@@ -13,23 +13,23 @@ var waitTimeScroll = 3000;
         for (let groupIdx = 0; groupIdx < presentGroups.length; groupIdx++) {
             let title = presentGroups[groupIdx].title;
             if (groupTitle.localeCompare(title.toString()) == 0) {
-			if (doMatchLogging)
-				console.warn("%c Skipping match list entry #" + (matchIdx+1) + " "
-					+ document.getElementsByTagName("match-entry")[matchIdx].getElementsByClassName("userCardImg")[0].title, "color: #cccccc");
+            if (doMatchLogging)
+                console.warn("%cSkipping match list entry #" + (matchIdx+1) + " "
+                    + document.getElementsByTagName("match-entry")[matchIdx].getElementsByClassName("userCardImg")[0].title, "color: #cccccc");
                 if ((matchIdx+1) == matchList.length) {
-					console.warn("%cScrolling to find untagged matches. Current list length is now " + matchList.length, "background: #ffff00");
-					window.scrollTo(0, window.document.body.scrollHeight);
+                    window.scrollTo(0, window.document.body.scrollHeight);
                     await new Promise(r => setTimeout(r, waitTimeScroll));
+                    console.warn("%cScrolled to find untagged matches. Current list length is now " + matchList.length, "background: #ffff00");
                 }
                 continue mainloop;
             }
         }
-		if (doMatchLogging)
-            console.warn("%c Tagging match list entry #" + (matchIdx+1) + " "
+        if (doMatchLogging)
+            console.warn("%cTagging match list entry #" + (matchIdx+1) + " "
                 + document.getElementsByTagName("match-entry")[matchIdx].getElementsByClassName("userCardImg")[0].title, "background: #222; color: #bada55");
         let btn = matchList[matchIdx].getElementsByClassName("groupAddBtn");
         btn[1].click();
-		while (document.getElementsByClassName("calloutContent").length == 0) {await new Promise(r => setTimeout(r, 500));}
+        while (document.getElementsByClassName("calloutContent").length == 0) {await new Promise(r => setTimeout(r, 500));}
         var popup = document.getElementsByClassName("calloutContent");  
         var groupItems = popup.item(0).getElementsByTagName("li");
         var myGroup = groupItems[groupRow].getElementsByClassName("checkbox");
