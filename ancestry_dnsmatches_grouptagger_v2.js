@@ -5,6 +5,7 @@ var logTaggedMatches = true;
 var logSkippedMatches = false;
 var waitTimeApplyGroup = 1000;
 var waitTimeScroll = 3000;
+var waitTimeAtEndOfList = 10000;
 // NO CHANGES BELOW THIS LINE!!!
 (async() => {
     var matchesTagged = 0;
@@ -68,6 +69,11 @@ var waitTimeScroll = 3000;
             matchesTagged++;
         }
         btn[1].click();
+
+        if (matchIdx === (matchList.length-1)) {
+            console.warn("%cReached the end of the list - waiting a bit to allow for a potential late load of new matches", "background: #000000; color: #ffff00");
+            await new Promise(r => setTimeout(r, waitTimeAtEndOfList)); // Allow the request to finish
+        }
     }
     console.warn("Tagging done - a total of " + matchList.length + " matches have been checked. Last script run tagged " + matchesTagged + " matches.");
 }) ()
