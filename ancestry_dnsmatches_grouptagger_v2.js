@@ -14,7 +14,7 @@ var waitTimeScroll = 3000;
         return;
     }
     mainloop: for (let matchIdx = 0; matchIdx < matchList.length; matchIdx++) {
-        let presentGroups = matchList[matchIdx].getElementsByClassName("indicatorGroupx");
+        let presentGroups = matchList[matchIdx].getElementsByClassName("indicatorGroup");
         if (!presentGroups) {
             console.error("%cFailed to get existing group tags for match line " + (matchIdx+1) + ". Skipping.", "background: #ff0000; color: #000000");
             continue mainloop;
