@@ -77,7 +77,7 @@ async function ScrollIfNeeded(matchIdx, waitTime = 3000) {
 (async () => {
   const ADDOP = "ADD";
   const REMOP = "REMOVE";
-  var matchList = document.getElementsByTagName("match-entry-updated");
+  var matchList = document.getElementsByTagName("match-entry");
   if (!matchList.length) {
     console.error(
       "%cNo matches found on page. Exiting.",
@@ -155,10 +155,7 @@ async function ScrollIfNeeded(matchIdx, waitTime = 3000) {
         matchGrid
           .querySelector(".groupAreaDesktopStuff .iconEdit")
           .dispatchEvent(hoverOn);
-        $("callout-component")
-          .last()
-          .find("[id*=groupAddEditCallout_removeTag]")[0]
-          .click();
+          $(".calloutContent .calloutMenu li button")[1].click();
         await ToggleGroup(false);
         matchWasModified = true;
       } else if (OPERATION.localeCompare(ADDOP) == 0) {
@@ -172,10 +169,7 @@ async function ScrollIfNeeded(matchIdx, waitTime = 3000) {
           matchGrid
             .querySelector(".groupAreaDesktopStuff .iconEdit")
             .dispatchEvent(hoverOn);
-          $("callout-component")
-            .last()
-            .find("[id*=groupAddEditCallout_addTag]")[0]
-            .click();
+            $(".calloutContent .calloutMenu li button")[0].click()
           await ToggleGroup(true);
         }
         matchWasModified = true;
@@ -192,9 +186,9 @@ async function ScrollIfNeeded(matchIdx, waitTime = 3000) {
             "background: #222; color: #bada55"
           );
 
-        // Clean up messy hoved-based popup menus
+        // Clean up messy hover-based popup menus
         if (
-          $("match-entry-updated")
+          $("match-entry")
             .eq(matchIdx)
             .find(".matchGrid .sharedDnaStuff .iconAdd").length
         ) {
